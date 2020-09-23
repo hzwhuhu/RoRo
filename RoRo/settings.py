@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'smsApp',
+    'user',
 ]
 
 MIDDLEWARE = [
@@ -46,6 +46,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'common.middleware.AuthMiddleware', #登录验证中间件
 ]
 
 ROOT_URLCONF = 'RoRo.urls'

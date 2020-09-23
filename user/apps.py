@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class SmsappConfig(AppConfig):
-    name = 'smsApp'
+    name = 'user'
