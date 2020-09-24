@@ -15,14 +15,18 @@ Including another URLconf
 """
 
 from django.urls import path
+
+from home import views
 from user import apis as user_api
+from Profile import apis as profile_api
 
 urlpatterns = [
-    #User 模块接口
-   path('api/user/vcode/fetch/', user_api.fetch_vcode),
-   path('api/user/vcode/submit', user_api.submit_vcode),
-#    path('api/user/profile/show',user_api.show_profile) ,
-#    path('api/user/profile/update',user_api.update_profile) ,
-   path('qiniu/token',user_api.qn_token) ,
-   path('qiniu/callback',user_api.qn_callback),
+    # User 模块接口
+    path('', views.index),
+    path('api/user/vcode/fetch/', user_api.fetch_vcode),
+    path('api/user/vcode/submit', user_api.submit_vcode),
+    path('api/user/profile/show', profile_api.show_profile),
+    path('api/user/profile/update', profile_api.update_profile),
+    path('qiniu/token', user_api.qn_token),
+    path('qiniu/callback', user_api.qn_callback),
 ]
