@@ -23,6 +23,6 @@ urlpatterns = [
    path('api/user/vcode/submit', user_api.submit_vcode),
 #    path('api/user/profile/show',user_api.show_profile) ,
 #    path('api/user/profile/update',user_api.update_profile) ,
-#    path('qiniu/token',user_api.qn_token) ,
-#    path('qiniu/callback',user_api.qn_callback),
+   path('qiniu/token',user_api.qn_token) ,
+   path('qiniu/callback',user_api.qn_callback),
 ]

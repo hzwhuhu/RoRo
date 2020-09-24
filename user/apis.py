@@ -3,6 +3,9 @@ from django.http import JsonResponse
 
 from user.logics import send_vcode
 from user.models import User
+from libs.qn_cloud import gen_token
+from libs.qn_cloud import get_res_url
+
 # Create your views here.
 
 
@@ -37,3 +40,28 @@ def submit_vcode(request):
         return JsonResponse({'code': 0, 'data': user.to_dict()})
     else:
         return JsonResponse({'code': 1001, 'data': '验证码错误'})
+
+
+def qn_token(request):
+    '''获取七牛云'''
+    uid = request.session['uid']
+    filename = f'Avatar-{uid}'
+    token = gen_token(uid,filename)
+    return JsonResponse({
+        'code': 0,
+        'data': {
+            'token': token,
+            'key': filename,
+        }
+    })
+
+
+def qn_callback(request):
+    uid = request.POST.get('uid')
+    key = request.POST.get('key')
+    avatar_url = get_res_url(key)
+    User.objects.filter(id=uid).update(avatar=avatar_url)
+    return JsonResponse({
+        'code': 0,
+        'data': avatar_url
+    })
